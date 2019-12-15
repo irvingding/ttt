@@ -1,0 +1,113 @@
+*{
+	padding:0;
+	margin:0; 
+}
+ul,li{
+	list-style: none;
+}
+.box{
+	width: 1200px;
+	height: 370px;
+	border: 1px solid red;
+	margin: 100px auto;
+	position: relative;
+	overflow: hidden;
+	bottom: 90px;
+}
+p{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.slider{
+	width: 8400px;
+	position:absolute;
+	left:-1200px;
+}
+.slide{
+	width: 1200px;
+	overflow: hidden;
+	float: left;
+}
+.box>span{
+	display: block;
+	width:30px;
+	height:50px;
+	text-align:center;
+	cursor:pointer;
+	top:175px;
+	line-height:50px;
+	background:rgb(255,0,0);
+	font-size: 30px;
+	position:absolute;
+	opacity: 0;
+}
+#left{
+	left: 30px;
+}
+#right{
+	right:30px;
+}
+.nav{
+	position: absolute;
+	left:500px;
+	bottom:20px;
+}
+.nav>li{
+	float: left;
+	width: 20px;
+	height:20px;
+	background: #ccc;
+	cursor: pointer;
+	margin: 0 10px;
+	border-radius: 50%;
+}
+.nav .active{
+	background:red;
+}
+div{
+	display: block;
+}
+.head{
+	margin:0 auto;
+	height: 20px; 
+	background-color: #ccc;
+	position: relative;
+	margin-bottom: 10px;
+}
+.head1{
+	width: 800px;
+	height: 20px;
+	position: absolute;
+	left: 350px;
+	overflow: hidden; 
+}
+.img{
+	position: absolute;
+	left: 334px;
+	top: 2px;
+}
+.warning{
+	position: absolute;
+	width: 270px;
+	right: -270px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
