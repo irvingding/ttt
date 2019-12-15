@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="sucai6-master/js/animate.js"></script>
+</head>
+<body>
+	<div class="head">
+		<div class="img"><img src="sucai6-master/images/a15.png" alt=""></div>
+		<div class="head1">
+			<div class="warning" id="warning"><p style="color: red;font-size: 10px;padding-top: 2px;">[温馨提示]最近有不少不法分子在网上骗人，请大家注意！！</p></div>
+		</div>
+	</div>
+	<div class="box" id="box">
+		<div class="slider" id="slider">
+			<div class="slide"><img src="sucai6-master/images/b5.png" alt=""s></div>
+			<div class="slide"><img src="sucai6-master/images/b1.png" alt=""></div>
+			<div class="slide"><img src="sucai6-master/images/b2.png" alt=""></div>
+			<div class="slide"><img src="sucai6-master/images/b3.png" alt=""></div>
+			<div class="slide"><img src="sucai6-master/images/b4.png" alt=""></div>
+			<div class="slide"><img src="sucai6-master/images/b5.png" alt=""></div>
+			<div class="slide"><img src="sucai6-master/images/b1.png" alt=""></div>
+		</div>
+		<span id="left"><</span>
+		<span id="right">></span>
+		<ul class="nav" id="nav">
+			<li class="active"><p>1</p></li>
+			<li><p>2</p></li>
+			<li><p>3</p></li>
+			<li><p>4</p></li>
+			<li><p>5</p></li>
+		</ul>
+	</div>
+	<script>
+		var box=document.getElementById("box");
+		var oNavlist=document.getElementById("nav").children;
+		var slider=document.getElementById("slider");
+		var left=document.getElementById("left");
+		var right=document.getElementById("right");
+		var p=document.getElementsByTagName("li");
+		var index=1;
+		var timer;
+		var isMoving=false;
+		function getStyle(obj,style) {  
+			if(obj.currentStyle) {  
+		    	return obj.currentStyle[style];  
+			} 
+			else {  
+		    	return getComputedStyle(obj)[style];  
+			} 
+		}
+		var warning = document.getElementById("warning");
+		onload = function(){
+			var a = setInterval(function(){
+				var now = parseInt(getStyle(warning,"right"));
+				warning.style.right=now+1+"px";
+				if(now>=800){
+					warning.style.right=-270+"px";
+				}
+			},10)
+		}
+		function next(){
+			if(isMoving){
+				return ;
+			}
+			isMoving=true;
+			index++;
+			navChange();
+			animate(slider,{left:-1200*index},function(){
+				if(index===6){
+					slider.style.left="-1200px";
+					index=1; 
+				}
+				isMoving=false;
+			});
+		}
+
+		function prev(){
+			if(isMoving){
+				return;
+			}
+			isMoving=true;
+			index--;
+			navChange();
+			animate(slider,{left:-1200*index},function(){
+				if(index===0){
+					slider.style.left="-6000px";
+					index=5; 
+				}
+			isMoving=false;
+			});
+		}
+
+		var timer=setInterval(next,3000);
+		//鼠标划入清定时器
+		box.onmouseover=function(){
+		 	animate(left,{opacity:50});
+		 	animate(right,{opacity:50});
+		 	clearInterval(timer);
+		 }
+		 //鼠标划出开定时器
+		box.onmouseout=function(){
+			animate(left,{opacity:0});
+			animate(right,{opacity:0});
+			timer=setInterval(next,3000);
+		}
+		right.onclick=next;
+		left.onclick=prev;
+		//小按钮点击事件
+		for(var i=0;i<oNavlist.length;i++){
+			oNavlist[i].index=i;
+			oNavlist[i].onclick=function(){
+				index =this.index+1;
+				navChange();
+				animate(slider,{left:-1200*index});
+			}
+		}
+		//小按钮背景色切换事件
+		function navChange(){
+			for(var i=0;i<oNavlist.length;i++){
+				oNavlist[i].className="";
+				p[i].setAttribute("style","color:black;");
+				p[0].setAttribute("style","color:red;");
+			}
+			if(index==6){
+				oNavlist[0].className="active";
+				p[0].setAttribute("style","color:white;");
+			}
+			else if(index==0){
+				oNavlist[4].className="active";
+				p[4].setAttribute("style", "color:white;");
+			}
+			else{
+				oNavlist[index-1].className='active';
+				p[index-1].setAttribute("style", "color:white;");
+			}
+		}
+
+	</script>
+</body>
+</html>
